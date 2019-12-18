@@ -1,0 +1,55 @@
+{
+  "name": "locweb3-js",
+  "version": "0.0.1",
+  "description": "LockTrip JavaScript API comunicating to locktrip node over RPC",
+  "main": "./src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LockTrip/Blockchain.git"
+  },
+  "license": "LGPL-3.0",
+  "directories": {
+    "lib": "./lib"
+  },
+  "engines": {
+    "node": ">=10",
+    "npm": ">=6"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bignumber.js": "^7.2.1",
+    "bn.js": "^4.11.8",
+    "bs58": "^4.0.1",
+    "chai": "^4.1.2",
+    "ethjs-abi": "^0.2.1",
+    "lodash": "^4.17.10",
+    "utf8": "^3.0.0",
+    "web3-utils": "^1.0.0-beta.36"
+  },
+  "devDependencies": {
+    "dotenv": "^6.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "husky": "^1.0.0-rc.13",
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "lint": "eslint -- src/. test/.",
+    "lint:fix": "eslint --fix -- src/. test/.",
+    "test": "mocha --recursive **/*.tests.js",
+    "test:cleanenv": "mocha --recursive **/*.tests.js --cleanenv"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint:fix"
+    }
+  },
+  "keywords": [
+    "locktrip",
+    "web3",
+    "javascript",
+    "jsonrpc"
+  ]
+}
