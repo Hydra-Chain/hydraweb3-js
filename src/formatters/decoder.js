@@ -7,11 +7,11 @@ const bs58 = require('bs58');
 const Encoder = require('./encoder');
 const Utils = require('../utils');
 
-const MainnetNetworkByte = '30';
+const MainnetNetworkByte = '28';
 const TestnetNetworkByte = '42';
 
 class Decoder {
-  static toLockTripAddress(hexAddress, isMainnet = false) {
+  static toHydraAddress(hexAddress, isMainnet = true) {
     if (hexAddress === undefined || isEmpty(hexAddress)) {
       throw new Error('hexAddress should not be undefined or empty');
     }

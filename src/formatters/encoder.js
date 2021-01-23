@@ -40,8 +40,8 @@ class Encoder {
   }
 
   /**
-   * Converts a LockTrip or hex address to a padded hex string.
-   * @param {string} address The LockTrip/hex address to convert.
+   * Converts a HYDRA or hex address to a padded hex string.
+   * @param {string} address The HYDRA/hex address to convert.
    * @return {string} The 32 bytes padded-left hex string.
    */
   static addressToHex(address) {

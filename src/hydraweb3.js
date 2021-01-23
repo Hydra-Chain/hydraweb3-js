@@ -7,10 +7,10 @@ const Encoder = require('./formatters/encoder');
 const Decoder = require('./formatters/decoder');
 const Utils = require('./utils');
 
-class Locweb3 {
+class Hydraweb3 {
   /**
-   * Locweb3 constructor.
-   * @param {string|Locweb3Provider} provider Either URL string to create HttpProvider or a Locweb3 compatible provider.
+   * Hydraweb3 constructor.
+   * @param {string|Hydraweb3Provider} provider Either URL string to create HttpProvider or a Hydraweb3 compatible provider.
    */
   constructor(provider) {
     this.provider = initProvider(provider);
@@ -147,21 +147,6 @@ class Locweb3 {
       .then(results => Decoder.decodeSearchLog(results, contractMetadata, removeHexPrefix));
   }
 
-  /** ******** GENERATING ********* */
-  /**
-   * Mine up to n blocks immediately (before the RPC call returns) to an address in the wallet.
-   * @param {number} blocks How many blocks are generated immediately.
-   * @param {number} maxTries How many iterations to try (default = 1000000).
-   * @return {array} Hashes of blocks generated.
-   */
-  generate(blocks, maxTries = 1000000) {
-    if (!isFinite(blocks)) {
-      throw Error('blocks must be a number.');
-    }
-
-    return this.provider.rawCall('generate', [blocks, maxTries]);
-  }
-
   /**
    * Mine blocks immediately to a specified address (before the RPC call returns).
    * @param {number} blocks How many blocks are generated immediately.
@@ -191,8 +176,8 @@ class Locweb3 {
 
   /** ******** RAW TRANSACTIONS ********* */
   /**
-   * Get the hex address of a LockTrip address.
-   * @param {string} address LockTrip address
+   * Get the hex address of a hydra address.
+   * @param {string} address hydra address
    * @return {Promise} Hex string of the converted address or Error
    */
   getHexAddress(address) {
@@ -200,9 +185,9 @@ class Locweb3 {
   }
 
   /**
-   * Converts a hex address to locktrip address.
-   * @param {string} hexAddress LockTrip address in hex format.
-   * @return {Promise} LockTrip address or Error.
+   * Converts a hex address to hydra address.
+   * @param {string} hexAddress hydra address in hex format.
+   * @return {Promise} hydra address or Error.
    */
   fromHexAddress(hexAddress) {
     return this.provider.rawCall('fromhexaddress', [hexAddress]);
@@ -210,8 +195,8 @@ class Locweb3 {
 
   /** ******** UTIL ********* */
   /**
-   * Validates if a valid LockTrip address.
-   * @param {string} address LockTrip address to validate.
+   * Validates if a valid hydra address.
+   * @param {string} address hydra address to validate.
    * @return {Promise} Object with validation info or Error.
    */
   validateAddress(address) {
@@ -230,7 +215,7 @@ class Locweb3 {
 
   /**
    * Reveals the private key corresponding to the address.
-   * @param {string} address The LockTrip address for the private key.
+   * @param {string} address The hydra address for the private key.
    * @return {Promise} Private key or Error.
    */
   dumpPrivateKey(address) {
@@ -238,7 +223,7 @@ class Locweb3 {
   }
 
   /**
-   * Encrypts the wallet for the first time. This will shut down the LockTrip server.
+   * Encrypts the wallet for the first time. This will shut down the hydra server.
    * @param {string} passphrase The passphrase to encrypt the wallet with. Must be at least 1 character.
    * @return {Promise} Success or Error.
    */
@@ -247,8 +232,8 @@ class Locweb3 {
   }
 
   /**
-   * Gets the account name associated with the LockTrip address.
-   * @param {string} address The LockTrip address for account lookup.
+   * Gets the account name associated with the hydra address.
+   * @param {string} address The hydra address for account lookup.
    * @return {Promise} Account name or Error.
    */
   getAccount(address) {
@@ -256,27 +241,27 @@ class Locweb3 {
   }
 
   /**
-   * Gets the LockTrip address based on the account name.
+   * Gets the hydra address based on the account name.
    * @param {string} acctName The account name for the address ("" for default).
-   * @return {Promise} LockTrip address or Error.
+   * @return {Promise} hydra address or Error.
    */
   getAccountAddress(acctName = '') {
     return this.provider.rawCall('getaccountaddress', [acctName]);
   }
 
   /**
-   * Gets the LockTrip address with the account name.
+   * Gets the hydra address with the account name.
    * @param {string} acctName The account name ("" for default).
-   * @return {Promise} LockTrip address array or Error.
+   * @return {Promise} hydra address array or Error.
    */
   getAddressesByAccount(acctName = '') {
     return this.provider.rawCall('getaddressesbyaccount', [acctName]);
   }
 
   /**
-   * Gets a new LockTrip address for receiving payments.
+   * Gets a new hydra address for receiving payments.
    * @param {string} acctName The account name for the address to be linked to ("" for default).
-   * @return {Promise} LockTrip address or Error.
+   * @return {Promise} hydra address or Error.
    */
   getNewAddress(acctName = '') {
     return this.provider.rawCall('getnewaddress', [acctName]);
@@ -352,7 +337,7 @@ class Locweb3 {
   /**
    * Lists groups of addresses which have had their common ownership made public by common use as inputs
    *  or as the resulting change in past transactions.
-   * @return {Promise} Array of addresses with LOC balances or Error.
+   * @return {Promise} Array of addresses with HYDRA balances or Error.
    */
   listAddressGroupings() {
     return this.provider.rawCall('listaddressgroupings');
@@ -376,15 +361,15 @@ class Locweb3 {
 
   /**
    * Lists unspent transaction outputs.
-   * @param {string} address Address to send LOC to.
-   * @param {number} amount Amount of LOC to send.
+   * @param {string} address Address to send HYDRA to.
+   * @param {number} amount Amount of HYDRA to send.
    * @param {string} comment Comment used to store what the transaction is for.
    * @param {string} commentTo Comment to store name/organization to which you're sending the transaction.
    * @param {boolean} subtractFeeFromAmount The fee will be deducted from the amount being sent.
    * @param {boolean} replaceable Allow this transaction to be replaced by a transaction with higher fees via BIP 125.
    * @param {number} confTarget Confirmation target (in blocks).
    * @param {string} estimateMode The fee estimate mode, must be one of: "UNSET", "ECONOMICAL", "CONSERVATIVE"
-   * @param {string} senderAddress The LockTrip address that will be used to send money from.
+   * @param {string} senderAddress The hydra address that will be used to send money from.
    * @param {boolean} changeToSender Return the change to the sender.
    * @return {Promise} Transaction ID or Error
    */
@@ -412,15 +397,6 @@ class Locweb3 {
       senderAddress,
       changeToSender,
     ]);
-  }
-
-  /**
-   * Set the transaction fee per kB. Overwrites the paytxfee parameter.
-   * @param {bumber} amount The transaction fee in LOC/kB.
-   * @return {Promise} True/false for success or Error.
-   */
-  setTxFee(amount) {
-    return this.provider.rawCall('settxfee', [amount]);
   }
 
   /**
@@ -453,4 +429,4 @@ class Locweb3 {
   }
 }
 
-module.exports = Locweb3;
+module.exports = Hydraweb3;

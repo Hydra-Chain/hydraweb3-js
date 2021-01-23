@@ -12,7 +12,7 @@ const initProvider = (provider) => {
 
   // Check for rawCall() in provider object
   if (!provider.rawCall || typeof provider.rawCall !== 'function') {
-    throw Error('provider is not a compatible Locweb3 Provider.');
+    throw Error('provider is not a compatible Hydraweb3 Provider.');
   }
 
   return provider;

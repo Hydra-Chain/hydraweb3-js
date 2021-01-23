@@ -1,11 +1,11 @@
 {
-  "name": "locweb3-js",
+  "name": "hydraweb3-js",
   "version": "0.0.1",
-  "description": "LockTrip JavaScript API comunicating to locktrip node over RPC",
+  "description": "HYDRA JavaScript API comunicating to hydra node over RPC",
   "main": "./src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LockTrip/Blockchain.git"
+    "url": "https://github.com/Hydra-Chain/node"
   },
   "license": "LGPL-3.0",
   "directories": {
@@ -47,7 +47,7 @@
     }
   },
   "keywords": [
-    "locktrip",
+    "hydra",
     "web3",
     "javascript",
     "jsonrpc"

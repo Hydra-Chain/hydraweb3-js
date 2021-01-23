@@ -5,12 +5,11 @@ const Decoder = require('./formatters/decoder');
 
 const DEFAULT_AMOUNT = 0;
 const DEFAULT_GAS_LIMIT = 250000;
-const DEFAULT_GAS_PRICE = 0.0000004;
 
 class Contract {
   /**
    * Contract constructor.
-   * @param {string|Locweb3Provider} provider Either URL string to create HttpProvider or a Locweb3 compatible provider.
+   * @param {string|Hydraweb3Provider} provider Either URL string to create HttpProvider or a Hydraweb3 compatible provider.
    * @param {string} address Address of the contract.
    * @param {array} abi ABI of the contract.
    */
@@ -49,18 +48,16 @@ class Contract {
       // Throw if methodArgs or senderAddress is not defined in params
       Utils.paramsCheck('send', params, ['methodArgs', 'senderAddress']);
 
-      const { methodArgs, amount, gasLimit, gasPrice, senderAddress } = params;
+      const { methodArgs, amount, gasLimit, senderAddress } = params;
       const data = Encoder.constructData(this.abi, methodName, methodArgs);
       const amt = amount || DEFAULT_AMOUNT;
       const limit = gasLimit || DEFAULT_GAS_LIMIT;
-      const price = gasPrice || DEFAULT_GAS_PRICE;
 
       const result = await this.provider.rawCall('sendtocontract', [
         this.address,
         data,
         amt,
         limit,
-        price.toFixed(8),
         senderAddress,
       ]);
 
@@ -69,7 +66,6 @@ class Contract {
         contractAddress: this.address,
         amount: amt,
         gasLimit: limit,
-        gasPrice: price,
       };
       return result;
     } catch (err) {

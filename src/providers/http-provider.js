@@ -8,7 +8,7 @@ const { isEmpty } = require('lodash');
 class HttpProvider {
   /**
    * Constructor.
-   * @param {string} urlString URL of the blockchain API. eg. http://user:password@127.0.0.1:13389
+   * @param {string} urlString URL of the blockchain API. eg. http://user:password@127.0.0.1:3389
    */
   constructor(urlString) {
     this.url = url.parse(urlString);
@@ -17,7 +17,7 @@ class HttpProvider {
   /**
    * Executes a request to the blockchain via JSONRPC POST request.
    * @param {string} method Blockchain method to call. eg. 'sendtocontract'
-   * @param {array} args Raw arguments for the call. [contractAddress, data, amount?, gasLimit?, gasPrice?]
+   * @param {array} args Raw arguments for the call. [contractAddress, data, amount?, gasLimit?]
    */
   async rawCall(method, args = []) {
     if (isEmpty(method)) {

@@ -146,12 +146,12 @@ class Utils {
   }
 
   /**
-   * Returns true if given string is valid locktrip address
-   * @method isLockTripAddress
+   * Returns true if given string is valid hydra address
+   * @method isLHydraAddress
    * @param {String}
    * @return {Boolean}
    */
-  static isLockTripAddress(address) {
+  static isHydraAddress(address) {
     if (_.isUndefined(address)) {
       return false;
     }
@@ -160,7 +160,9 @@ class Utils {
       return false;
     }
 
-    if (!address.startsWith('q') && !address.startsWith('Q')) {
+    // TODO: add testnet validation
+    //if (!address.startsWith('T') && !address.startsWith('H')) {
+    if (!address.startsWith('H')) {
       return false;
     }
 
