@@ -2,12 +2,12 @@
 
 Hydraweb3 is a library for dApps to interract with the HYDRA blockchain. Hydraweb3 communicates to a HYDRA node via the provider provided.
 
-https://www.npmjs.com/package/hydraweb3
+https://www.npmjs.com/package/hydraweb3-js
 
 ## Get Started
 Run the following in your project folder:
 
-	npm install hydraweb3 --save
+	npm install hydraweb3-js --save
 
 ## Web Dapp Usage
 This is example is meant for web dapps who would like to use Hydraweb3's convenience methods with HydraWallet's RPC provider. HydraWallet is a Hydra wallet [Chrome extension](#). More details about HydraWallet [here](https://github.com/hydrachain/hydrawallet).
