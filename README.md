@@ -10,7 +10,7 @@ Run the following in your project folder:
 	npm install hydraweb3-js --save
 
 ## Web Dapp Usage
-This is example is meant for web dapps who would like to use Hydraweb3's convenience methods with HydraWallet's RPC provider. HydraWallet is a Hydra wallet [Chrome extension](#). More details about HydraWallet [here](https://github.com/hydrachain/hydrawallet).
+This is example is meant for web dapps who would like to use Hydraweb3's convenience methods with HydraWallet's RPC provider. HydraWallet is a Hydra wallet [Chrome extension](#). More details about HydraWallet [here](https://github.com/Hydra-Chain/hydrawallet).
 
 ### 1. Construct Hydraweb3 instance
 If you have HydraWallet installed, you will have a `window.hydrawallet` object injected in your browser tab. Pass that into Hydraweb3 as a parameter to set the provider.
