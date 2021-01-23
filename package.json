@@ -1,11 +1,11 @@
 {
   "name": "hydraweb3-js",
   "version": "0.0.2",
-  "description": "HYDRA JavaScript API comunicating to hydra node over RPC",
+  "description": "HYDRA JavaScript API comunicating to HYDRA node over RPC",
   "main": "./src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Hydra-Chain/node"
+    "url": "https://github.com/Hydra-Chain/hydraweb3-js"
   },
   "license": "LGPL-3.0",
   "directories": {
