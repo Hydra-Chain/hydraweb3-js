@@ -147,7 +147,7 @@ class Utils {
 
   /**
    * Returns true if given string is valid hydra address
-   * @method isLHydraAddress
+   * @method isHydraAddress
    * @param {String}
    * @return {Boolean}
    */
@@ -161,8 +161,7 @@ class Utils {
     }
 
     // TODO: add testnet validation
-    //if (!address.startsWith('T') && !address.startsWith('H')) {
-    if (!address.startsWith('H')) {
+    if (!address.startsWith('T') && !address.startsWith('H')) {
       return false;
     }
 
