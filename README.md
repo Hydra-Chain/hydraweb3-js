@@ -34,7 +34,7 @@ To get the current logged in account in Hydrawallet, you will have to add an [Ev
 let account;
 
 function onHydrawalletAcctChange(event) {
-  if (event.data.message && event.data.message.type == "ACCOUNT_CHANGED") {
+  if (event.data.message && event.data.message.type == "HYDRAWALLET_ACCOUNT_CHANGED") {
     account = event.data.message.payload;
 
     // You now have the logged in account.
